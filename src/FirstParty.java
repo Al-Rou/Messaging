@@ -24,7 +24,6 @@ public class FirstParty {
                     for (int j=0; j < message.length(); j++) {
                         byteBuffer.putChar(message.charAt(j));
                     }
-                    //byteBuffer.putChar('/');
                     DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
                             InetAddress.getLocalHost(), 5558);
                     datagramSocket.send(datagramPacket);
@@ -40,7 +39,7 @@ public class FirstParty {
                     }while (byteBufferResponse.hasRemaining());
                     System.out.println(receivedMessage);
 
-                }while (2 > 1);
+                }while (true);
             }catch (Exception e)
             {
                 e.printStackTrace();

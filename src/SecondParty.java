@@ -24,7 +24,7 @@ public class SecondParty {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
                     System.out.println(receivedMess);
-
+                    //Sending data
                     Scanner in = new Scanner(System.in);
                     String sendingMess = in.nextLine();
                     ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
@@ -32,7 +32,6 @@ public class SecondParty {
                     for (int j=0; j < sendingMess.length(); j++) {
                         byteBuffer3.putChar(sendingMess.charAt(j));
                     }
-                    //byteBuffer3.putChar('/');
                     DatagramPacket datagramPacket3 = new DatagramPacket(byteBuffer3.array(),
                             byteBuffer3.position(), datagramPacket2.getAddress(),
                             datagramPacket2.getPort());
