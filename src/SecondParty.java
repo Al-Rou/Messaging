@@ -13,12 +13,13 @@ public class SecondParty {
                 //This loop continues sending and receiving data until the messaging finishes
                 while (true){
                     //Receiving data
+                    String receivedMess = "";
                     ByteBuffer byteBuffer2 = ByteBuffer.allocate(1024);
                     byteBuffer2.order(ByteOrder.BIG_ENDIAN);
                     DatagramPacket datagramPacket2 = new DatagramPacket(byteBuffer2.array(),
                             byteBuffer2.array().length);
                     datagramSocket.receive(datagramPacket2);
-                    String receivedMess = "";
+
                     do {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
