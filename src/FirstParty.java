@@ -23,6 +23,7 @@ public class FirstParty {
                     for (int j=0; j < message.length(); j++) {
                         byteBuffer.putChar(message.charAt(j));
                     }
+                    byteBuffer.putChar('/');
                     DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
                             InetAddress.getLocalHost(), 5558);
                     datagramSocket.send(datagramPacket);
@@ -33,7 +34,9 @@ public class FirstParty {
                             byteBufferResponse.array().length);
                     datagramSocket.receive(datagramPacketRes);
                     String receivedMessage = "";
-                    receivedMessage += byteBufferResponse.getChar();
+                    do {
+                        receivedMessage += byteBufferResponse.getChar();
+                    }while (byteBufferResponse.getChar() != ('/'));
                     System.out.println(receivedMessage);
 
                 }while (2 > 1);

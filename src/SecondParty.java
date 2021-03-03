@@ -19,7 +19,9 @@ public class SecondParty {
                             byteBuffer2.array().length);
                     datagramSocket.receive(datagramPacket2);
                     String receivedMess = "";
-                    receivedMess += byteBuffer2.getChar();
+                    do {
+                        receivedMess += byteBuffer2.getChar();
+                    }while (byteBuffer2.getChar() != ('/'));
                     System.out.println(receivedMess);
 
                     Scanner in = new Scanner(System.in);
@@ -29,6 +31,7 @@ public class SecondParty {
                     for (int j=0; j < sendingMess.length(); j++) {
                         byteBuffer3.putChar(sendingMess.charAt(j));
                     }
+                    byteBuffer3.putChar('/');
                     DatagramPacket datagramPacket3 = new DatagramPacket(byteBuffer3.array(),
                             byteBuffer3.position(), datagramPacket2.getAddress(),
                             datagramPacket2.getPort());
