@@ -3,6 +3,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -38,8 +40,11 @@ public class FirstParty {
                     do {
                         receivedMessage += byteBufferResponse.getChar();
                     }while (byteBufferResponse.hasRemaining());
+                    Date date = new Date();
+                    Timestamp timestamp = new Timestamp(date.getTime());
                     System.out.print("PartyTwo: ");
-                    System.out.println(receivedMessage);
+                    System.out.print(receivedMessage);
+                    System.out.println(" (" + timestamp + ")");
 
                 }while (true);
             }catch (Exception e)
