@@ -87,8 +87,8 @@ public class SecondParty {
                                     byteBuffer3.putChar('\n');
                                 }
                                 DatagramPacket datagramPacket3 = new DatagramPacket(byteBuffer3.array(),
-                                        byteBuffer3.position(), packetAddress,
-                                        packetPort);
+                                        byteBuffer3.position(), InetAddress.getLocalHost(),
+                                        5557);
                                 datagramSocket.send(datagramPacket3);
                             }catch (Exception e)
                             {
@@ -96,10 +96,10 @@ public class SecondParty {
                             }
                         }
                     });
-                    threadReceive.start();
                     threadSend.start();
+                    threadReceive.start();
                     threadReceive.join();
-                    threadSend.join();
+                    //threadSend.join();
                 }
             }catch (Exception e)
             {

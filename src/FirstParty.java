@@ -92,7 +92,7 @@ public class FirstParty {
                     });
                     threadSend.start();
                     threadReceive.start();
-                    threadSend.join();
+                    //threadSend.join();
                     threadReceive.join();
                 }while (true);
             }catch (Exception e)
