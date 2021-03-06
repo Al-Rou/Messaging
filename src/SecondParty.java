@@ -15,9 +15,9 @@ public class SecondParty {
             try {
                 DatagramSocket datagramSocket = new DatagramSocket(5558);
                 //Date is stamped
-                Date date = new Date();
-                DateFormat dateFormat1 = new SimpleDateFormat("MM.dd.yyyy");
-                System.out.println(dateFormat1.format(date.getTime()));
+                Date dateOfMessaging = new Date();
+                DateFormat dateFormatForMessaging = new SimpleDateFormat("MM.dd.yyyy");
+                System.out.println(dateFormatForMessaging.format(dateOfMessaging.getTime()));
                 //This loop continues sending and receiving data until the messaging finishes
                 while (true){
                     //Receiving data
@@ -32,9 +32,9 @@ public class SecondParty {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
                     //Time of receiving message is stamped
-                    Date date2 = new Date();
-                    DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-                    String timeToShow = dateFormat2.format(date2.getTime());
+                    Date dateOfReceiving = new Date();
+                    DateFormat dateFormatForReceived = new SimpleDateFormat("HH:mm:ss");
+                    String timeToShow = dateFormatForReceived.format(dateOfReceiving.getTime());
                     System.out.print("PartyOne: ");
                     System.out.print(receivedMess);
                     System.out.println(" (" + timeToShow + ")");
@@ -42,8 +42,8 @@ public class SecondParty {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String sendingMess = in.nextLine();
-                    Date date3 = new Date();
-                    Timestamp timestamp = new Timestamp(date3.getTime());
+                    Date dateOfSending = new Date();
+                    Timestamp timestamp = new Timestamp(dateOfSending.getTime());
                     String sentTime = timestamp.toString();
                     String sentTimeToShow = sentTime.substring(11, 19);
                     System.out.println("(sent at " + sentTimeToShow + ")");

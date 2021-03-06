@@ -26,6 +26,11 @@ public class FirstParty {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String message = in.nextLine();
+                    //Time of sending message is stamped
+                    Date dateOfSending = new Date();
+                    DateFormat dateFormatForSent = new SimpleDateFormat("HH:mm:ss");
+                    String timeOfSending = dateFormatForSent.format(dateOfSending.getTime());
+                    System.out.println("(sent at " + timeOfSending + ")");
                     //Sending data
                     ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                     byteBuffer.order(ByteOrder.BIG_ENDIAN);
@@ -45,13 +50,13 @@ public class FirstParty {
                     do {
                         receivedMessage += byteBufferResponse.getChar();
                     }while (byteBufferResponse.hasRemaining());
-                    Date date = new Date();
-                    Timestamp timestamp = new Timestamp(date.getTime());
+                    Date dateOfReceiving = new Date();
+                    Timestamp timestamp = new Timestamp(dateOfReceiving.getTime());
                     System.out.print("PartyTwo: ");
                     System.out.print(receivedMessage);
                     String timeString = timestamp.toString();
-                    String timeToShow = timeString.substring(11, 19);
-                    System.out.println(" (" + timeToShow + ")");
+                    String timeOfReceiving = timeString.substring(11, 19);
+                    System.out.println(" (" + timeOfReceiving + ")");
 
                 }while (true);
             }catch (Exception e)
