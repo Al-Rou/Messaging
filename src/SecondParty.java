@@ -32,8 +32,9 @@ public class SecondParty {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
                     //Time of receiving message is stamped
+                    Date date2 = new Date();
                     DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-                    String timeToShow = dateFormat2.format(date.getTime());
+                    String timeToShow = dateFormat2.format(date2.getTime());
                     System.out.print("PartyOne: ");
                     System.out.print(receivedMess);
                     System.out.println(" (" + timeToShow + ")");
@@ -41,10 +42,11 @@ public class SecondParty {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String sendingMess = in.nextLine();
-                    Timestamp timestamp = new Timestamp(date.getTime());
+                    Date date3 = new Date();
+                    Timestamp timestamp = new Timestamp(date3.getTime());
                     String sentTime = timestamp.toString();
                     String sentTimeToShow = sentTime.substring(11, 19);
-                    System.out.println("sent at " + sentTimeToShow);
+                    System.out.println("(sent at " + sentTimeToShow + ")");
                     ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
                     byteBuffer3.order(ByteOrder.BIG_ENDIAN);
                     for (int j=0; j < sendingMess.length(); j++) {
