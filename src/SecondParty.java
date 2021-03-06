@@ -13,6 +13,10 @@ public class SecondParty {
             //A connection is established and the first number is received from Player One
             try {
                 DatagramSocket datagramSocket = new DatagramSocket(5558);
+                //Date is stamped
+                Date date = new Date();
+                DateFormat dateFormat1 = new SimpleDateFormat("MM.dd.yyyy");
+                System.out.println(dateFormat1.format(date.getTime()));
                 //This loop continues sending and receiving data until the messaging finishes
                 while (true){
                     //Receiving data
@@ -26,9 +30,9 @@ public class SecondParty {
                     do {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
-                    Date date = new Date();
-                    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                    String timeToShow = dateFormat.format(date.getTime());
+
+                    DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+                    String timeToShow = dateFormat2.format(date.getTime());
                     System.out.print("PartyOne: ");
                     System.out.print(receivedMess);
                     System.out.println(" (" + timeToShow + ")");
