@@ -44,7 +44,9 @@ public class FirstParty {
                     Timestamp timestamp = new Timestamp(date.getTime());
                     System.out.print("PartyTwo: ");
                     System.out.print(receivedMessage);
-                    System.out.println(" (" + timestamp + ")");
+                    String timeString = timestamp.toString();
+                    String timeToShow = timeString.substring(11, 19);
+                    System.out.println(" (" + timeToShow + ")");
 
                 }while (true);
             }catch (Exception e)
