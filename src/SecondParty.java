@@ -2,6 +2,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class SecondParty {
@@ -23,8 +26,12 @@ public class SecondParty {
                     do {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                    String timeToShow = dateFormat.format(date.getTime());
                     System.out.print("PartyOne: ");
-                    System.out.println(receivedMess);
+                    System.out.print(receivedMess);
+                    System.out.println(" (" + timeToShow + ")");
                     //Sending data
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
