@@ -9,14 +9,14 @@ import java.util.Scanner;
 public class FirstParty {
         public static void main(String[] args)
         {
-            System.out.println("Start messaging:");
+            System.out.println("Start messaging");
 
             //Now, a connection is established and the message is sent to Party Two
             try{
                 DatagramSocket datagramSocket = new DatagramSocket(5557);
                 //This loop continues sending and receiving data until the messaging finishes
                 do {
-
+                    System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String message = in.nextLine();
                     //Sending data
