@@ -14,7 +14,7 @@ public class FirstParty {
             Date dateOfMessaging = new Date();
             DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy");
             String dateToShow = dateFormat.format(dateOfMessaging.getTime());
-            System.out.println("Start messaging on " + dateToShow);
+            System.out.println("Start messaging on " + dateToShow + " (type \"&\" at the end of your message in order to send)");
 
             //Now, a connection is established and the message is sent to Party Two
             try{
@@ -23,14 +23,17 @@ public class FirstParty {
                 do {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
-                    //String message = "";
                     List<String> messageList = new ArrayList<>();
-                    int z = 0;
-                    do{
-                        messageList.add(in.nextLine());
-                        z++;
-                        System.out.println(z);
-                    }while (!in.nextLine().equals("&"));
+                    while (true){
+                        String message = in.nextLine();
+                        if(message.equals("&"))
+                        {
+                            break;
+                        }
+                        else {
+                            messageList.add(message);
+                        }
+                    }
                     //Time of sending message is stamped
                     Date dateOfSending = new Date();
                     DateFormat dateFormatForSent = new SimpleDateFormat("HH:mm:ss");
@@ -48,6 +51,7 @@ public class FirstParty {
                         {
                             byteBuffer.putChar(messageList.get(i).charAt(j));
                         }
+                        byteBuffer.putChar('\n');
                     }
                     DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
                             InetAddress.getLocalHost(), 5558);

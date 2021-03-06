@@ -5,7 +5,9 @@ import java.nio.ByteOrder;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class SecondParty {
@@ -17,7 +19,8 @@ public class SecondParty {
                 //Date is stamped
                 Date dateOfMessaging = new Date();
                 DateFormat dateFormatForMessaging = new SimpleDateFormat("MM.dd.yyyy");
-                System.out.println(dateFormatForMessaging.format(dateOfMessaging.getTime()));
+                System.out.println(dateFormatForMessaging.format(dateOfMessaging.getTime()) +
+                        " (type \"&\" at the end of your message in order to send)");
                 //This loop continues sending and receiving data until the messaging finishes
                 while (true){
                     //Receiving data
@@ -41,7 +44,17 @@ public class SecondParty {
                     //Sending data
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
-                    String sendingMess = in.nextLine();
+                    List<String> messageList = new ArrayList<>();
+                    while (true){
+                        String message = in.nextLine();
+                        if(message.equals("&"))
+                        {
+                            break;
+                        }
+                        else {
+                            messageList.add(message);
+                        }
+                    }
                     Date dateOfSending = new Date();
                     Timestamp timestamp = new Timestamp(dateOfSending.getTime());
                     String sentTime = timestamp.toString();
@@ -49,8 +62,11 @@ public class SecondParty {
                     System.out.println("(sent at " + sentTimeToShow + ")");
                     ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
                     byteBuffer3.order(ByteOrder.BIG_ENDIAN);
-                    for (int j=0; j < sendingMess.length(); j++) {
-                        byteBuffer3.putChar(sendingMess.charAt(j));
+                    for (int i=0; i < messageList.size(); i++) {
+                        for (int j = 0; j < messageList.get(i).length(); j++) {
+                            byteBuffer3.putChar(messageList.get(i).charAt(j));
+                        }
+                        byteBuffer3.putChar('\n');
                     }
                     DatagramPacket datagramPacket3 = new DatagramPacket(byteBuffer3.array(),
                             byteBuffer3.position(), datagramPacket2.getAddress(),
