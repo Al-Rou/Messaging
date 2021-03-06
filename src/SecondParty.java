@@ -23,6 +23,7 @@ public class SecondParty {
                     do {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
+                    System.out.print("PartyOne: ");
                     System.out.println(receivedMess);
                     //Sending data
                     Scanner in = new Scanner(System.in);

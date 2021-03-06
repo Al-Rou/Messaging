@@ -37,6 +37,7 @@ public class FirstParty {
                     do {
                         receivedMessage += byteBufferResponse.getChar();
                     }while (byteBufferResponse.hasRemaining());
+                    System.out.print("PartyTwo: ");
                     System.out.println(receivedMessage);
 
                 }while (true);
