@@ -4,6 +4,8 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,7 +13,10 @@ import java.util.Scanner;
 public class FirstParty {
         public static void main(String[] args)
         {
-            System.out.println("Start messaging");
+            Date dateOfMessaging = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy");
+            String dateToShow = dateFormat.format(dateOfMessaging.getTime());
+            System.out.println("Start messaging on " + dateToShow);
 
             //Now, a connection is established and the message is sent to Party Two
             try{
