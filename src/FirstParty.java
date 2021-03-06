@@ -6,9 +6,7 @@ import java.nio.ByteOrder;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class FirstParty {
         public static void main(String[] args)
@@ -25,7 +23,14 @@ public class FirstParty {
                 do {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
-                    String message = in.nextLine();
+                    //String message = "";
+                    List<String> messageList = new ArrayList<>();
+                    int z = 0;
+                    do{
+                        messageList.add(in.nextLine());
+                        z++;
+                        System.out.println(z);
+                    }while (!in.nextLine().equals("&"));
                     //Time of sending message is stamped
                     Date dateOfSending = new Date();
                     DateFormat dateFormatForSent = new SimpleDateFormat("HH:mm:ss");
@@ -34,8 +39,15 @@ public class FirstParty {
                     //Sending data
                     ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                     byteBuffer.order(ByteOrder.BIG_ENDIAN);
-                    for (int j=0; j < message.length(); j++) {
+                    /*for (int j=0; j < message.length(); j++) {
                         byteBuffer.putChar(message.charAt(j));
+                    }*/
+                    for (int i=0; i < messageList.size(); i++)
+                    {
+                        for (int j=0; j < messageList.get(i).length(); j++)
+                        {
+                            byteBuffer.putChar(messageList.get(i).charAt(j));
+                        }
                     }
                     DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
                             InetAddress.getLocalHost(), 5558);
