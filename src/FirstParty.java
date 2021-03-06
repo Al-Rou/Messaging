@@ -16,6 +16,7 @@ public class FirstParty {
                 DatagramSocket datagramSocket = new DatagramSocket(5557);
                 //This loop continues sending and receiving data until the messaging finishes
                 do {
+
                     Scanner in = new Scanner(System.in);
                     String message = in.nextLine();
                     //Sending data

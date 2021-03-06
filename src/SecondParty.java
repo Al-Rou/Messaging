@@ -26,6 +26,7 @@ public class SecondParty {
                     System.out.print("PartyOne: ");
                     System.out.println(receivedMess);
                     //Sending data
+                    System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String sendingMess = in.nextLine();
                     ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
