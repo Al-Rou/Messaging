@@ -27,14 +27,14 @@ public class FirstParty {
                         @Override
                         public void run() {
                             try {
-                                System.out.print("Your message: ");
+                                //System.out.print("Your message: ");
                                 Scanner in = new Scanner(System.in);
                                 String message = in.nextLine();
                                 //Time of sending message is stamped
                                 Date dateOfSending = new Date();
                                 DateFormat dateFormatForSent = new SimpleDateFormat("HH:mm:ss");
                                 String timeOfSending = dateFormatForSent.format(dateOfSending.getTime());
-                                System.out.println("(sent at " + timeOfSending + ")");
+                                System.out.println("Your message: " + message + " (sent at " + timeOfSending + ")");
                                 //Sending data
                                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                                 byteBuffer.order(ByteOrder.BIG_ENDIAN);
