@@ -2,6 +2,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class SecondParty {
                     do {
                         receivedMess += byteBuffer2.getChar();
                     }while (byteBuffer2.hasRemaining());
-
+                    //Time of receiving message is stamped
                     DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
                     String timeToShow = dateFormat2.format(date.getTime());
                     System.out.print("PartyOne: ");
@@ -40,6 +41,10 @@ public class SecondParty {
                     System.out.print("Your message: ");
                     Scanner in = new Scanner(System.in);
                     String sendingMess = in.nextLine();
+                    Timestamp timestamp = new Timestamp(date.getTime());
+                    String sentTime = timestamp.toString();
+                    String sentTimeToShow = sentTime.substring(11, 19);
+                    System.out.println("sent at " + sentTimeToShow);
                     ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
                     byteBuffer3.order(ByteOrder.BIG_ENDIAN);
                     for (int j=0; j < sendingMess.length(); j++) {
